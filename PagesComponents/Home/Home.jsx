@@ -14,8 +14,10 @@ import {
   RefinementList,
 } from "react-instantsearch-dom";
 import Slider from "react-slick";
+import { useRouter } from "next/router";
 
 function HomePage(props) {
+  const history = useRouter();
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
     return (
