@@ -1,5 +1,31 @@
 const { NextFederationPlugin } = require("@module-federation/nextjs-mf");
-/** @type {import('next').NextConfig} */
+
+const withImages = require("next-images");
+
+module.exports = withImages({
+  fileExtensions: ["jpg", "jpeg", "png", "gif", "svg"],
+  webpack(config, options) {
+    return config;
+  },
+});
+
+module.exports = {
+  webpack: (config, options) => {
+    config.module.rules.push({
+      test: /\.mdx/,
+      use: [
+        options.defaultLoaders.babel,
+        {
+          loader: "@mdx-js/loader",
+          options: pluginOptions.options,
+        },
+      ],
+    });
+
+    return config;
+  },
+};
+
 const nextConfig = {
   webpack: (config, options) => {
     const { isServer } = options;
@@ -19,7 +45,6 @@ const nextConfig = {
 
         extraOptions: {
           exposePages: true,
-          automaticAsyncBoundary: true,
         },
       })
     );
