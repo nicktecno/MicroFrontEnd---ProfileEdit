@@ -1,5 +1,6 @@
 import algoliasearch from "algoliasearch/lite";
 import apiUnlogged from "../services/apiUnlogged";
+import { useLang } from "../Context/LangContext";
 import HomePage from "../PagesComponents/Home/Home";
 
 const searchClient = algoliasearch(
@@ -13,9 +14,23 @@ const DEFAULT_PROPS = {
 };
 
 export default function Home(props) {
+  const { routeTranslations } = useLang();
+
+  const mktName = process.env.NEXT_PUBLIC_REACT_APP_NAME;
+  const appImagesUrl = process.env.NEXT_PUBLIC_REACT_APP_IMAGES_URL;
+  const appPhotobookModuleActive =
+    process.env.NEXT_PUBLIC_REACT_APP_PHOTOBOOK_MODULE_ACTIVE;
   return (
     <>
-      <HomePage {...DEFAULT_PROPS} menu={props.menu} banners={props.banners} />
+      <HomePage
+        {...DEFAULT_PROPS}
+        menu={props.menu}
+        banners={props.banners}
+        routeTranslations={routeTranslations}
+        mktName={mktName}
+        appImagesUrl={appImagesUrl}
+        appPhotobookModuleActive={appPhotobookModuleActive}
+      />
     </>
   );
 }

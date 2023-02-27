@@ -56,116 +56,6 @@ export const RemoveIcon = styled(CartXFill)`
   margin-bottom: 20px;
 `;
 
-export const CorrectCheck = styled.div`
-  background-color: #82ce34;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px 20px;
-  font-weight: 700;
-  text-transform: uppercase;
-`;
-
-export const ErrorCheck = styled.div`
-  background-color: #ce171f;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px 20px;
-  font-weight: 700;
-  text-transform: uppercase;
-`;
-
-export const CaixaProduto = styled.div`
-  background-color: #fff;
-  border-radius: 10px;
-  margin: 15px auto;
-  display: block;
-  max-width: 219px;
-  padding: 20px 0px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  font-weight: 300;
-
-  strong {
-    font-weight: 700;
-  }
-
-  img {
-    max-width: 90%;
-    height: auto;
-    margin: 15px auto;
-  }
-
-  .circulo {
-    margin: initial;
-    font-size: 12px;
-    font-weight: 600;
-    margin-top: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-
-    .color {
-      width: 20px;
-      height: 20px;
-      border-radius: 15px;
-      border: 2px solid #ce171f;
-      margin-right: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      span {
-        display: none;
-        svg {
-          color: #333;
-        }
-      }
-    }
-
-    &:hover,
-    &.active {
-      .color {
-        span {
-          display: initial;
-        }
-      }
-    }
-
-    &.Branco {
-      .color {
-        background-color: #fff;
-        svg {
-          color: #333;
-        }
-      }
-    }
-
-    &.Prata {
-      .color {
-        background-color: #bec2cb;
-        svg {
-          color: #fff;
-        }
-      }
-    }
-
-    &.Preto {
-      .color {
-        background-color: #000;
-        svg {
-          color: #fff;
-        }
-      }
-    }
-  }
-`;
-
 export const BannerContainer = styled.div`
   max-width: 1920px;
   width: 100%;
@@ -211,7 +101,6 @@ export const sliderMobile = styled.div`
     width: 40px;
   }
   .carousel-control-prev-icon {
-    /* background-image: url("/image/prevBlack.png"); */
     height: 20px;
     width: 20px;
   }
@@ -223,7 +112,6 @@ export const sliderMobile = styled.div`
     width: 40px;
   }
   .carousel-control-next-icon {
-    /* background-image: url("/image/nextBlack.png"); */
     height: 20px;
     width: 20px;
   }
@@ -686,6 +574,7 @@ export const ConjuntoBottom = styled.div`
 
 export const ContainerBottom = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: start;
   padding-left: 0px;
   padding-right: 0px;

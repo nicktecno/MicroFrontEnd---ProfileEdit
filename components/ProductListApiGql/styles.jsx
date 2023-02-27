@@ -12,11 +12,17 @@ const customMedia = generateMedia({
 });
 
 export const ProductsContainer = styled.div`
-  max-width: 100%;
+  max-width: ${(props) => (props.page !== "home" ? "100%" : "1920px")};
   display: flex;
-  justify-content: start;
-  align-self: center;
   flex-wrap: wrap;
+  gap: 15px;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+
+  ${customMedia.lessThan("tablet")`
+    margin-left:20px;
+
+    `}
 
   #NoProductsDiv {
     font-size: 27px;
@@ -32,14 +38,41 @@ export const ProductsContainer = styled.div`
 `;
 
 export const SearchButton = styled.div`
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
+  max-width: 1920px;
+  border-radius: 2px;
   button {
-    margin-top: 20px;
     width: 200px;
     height: 40px;
     font-weight: 600;
     border: none;
+  }
+`;
+
+export const BoxNextArrow = styled.div`
+  display: flex;
+
+  .slick-next:before {
+    display: flex;
+    width: 20px;
+    height: 20px;
+
+    background-size: 20px 20px;
+    color: var(--font-color);
+  }
+`;
+
+export const BoxPrevArrow = styled.div`
+  display: flex;
+
+  .slick-prev:before {
+    display: flex;
+    width: 20px;
+    height: 20px;
+
+    background-size: 20px 20px;
+    color: var(--font-color);
   }
 `;

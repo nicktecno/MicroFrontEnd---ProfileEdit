@@ -1,5 +1,5 @@
 import GlobalStyles from "../styles/globals";
-import { defaultLayout } from "../jover.json";
+import defaultLayout from "../jover";
 
 import { LangProvider } from "../Context/LangContext";
 import { AuthProvider } from "../Context/AuthContext";

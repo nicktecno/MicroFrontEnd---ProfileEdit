@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 
-import ListHomeProducts from "../../components/ListHomeProducts";
+import ProductList from "../../components/ProductList";
 
 import * as S from "./style";
 
@@ -17,6 +17,7 @@ import Slider from "react-slick";
 import { useRouter } from "next/router";
 
 function HomePage(props) {
+  console.log(props);
   const history = useRouter();
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -165,7 +166,7 @@ function HomePage(props) {
           },
         },
       });
-  }, []);
+  }, [props]);
 
   function redirect(url) {
     window.location.href = url;
@@ -177,9 +178,9 @@ function HomePage(props) {
         <meta charSet="utf-8" />
         <meta
           name="description"
-          content={process.env.NEXT_PUBLIC_REACT_APP_DESCRIPTION}
+          content="Página inicial, confira nossas ofertas!"
         />
-        <title>{process.env.NEXT_PUBLIC_REACT_APP_TITLE}</title>
+        <title>{props.mktName}</title>
       </Helmet>
       <S.BannerContainer>
         <S.sliderBrowser>
@@ -287,7 +288,13 @@ function HomePage(props) {
               <RefinementList attribute="son_new" defaultRefinement={["Sim"]} />
             </S.HideElement>
 
-            <ListHomeProducts attribute="son_new" category="Lancamentos" />
+            <ProductList
+              mktName={props.mktName}
+              appImagesUrl={props.appImagesUrl}
+              page={"home"}
+              attribute="son_new"
+              category="Lancamentos"
+            />
           </S.ContainerBottom>{" "}
         </InstantSearch>
       </S.sliderProduct>
@@ -331,7 +338,7 @@ function HomePage(props) {
           )}
         </S.BannerMobile>
       </S.SecondaryBanner>
-      {process.env.NEXT_PUBLIC_REACT_APP_PHOTOBOOK_MODULE_ACTIVE === "true" && (
+      {props.appPhotobookModuleActive === "true" && (
         <S.ConjuntoMid>
           <S.BlocoExplore onClick={() => history.push("/inspire")}>
             <div className="blocoImage">
@@ -368,7 +375,10 @@ function HomePage(props) {
               />
             </S.HideElement>
 
-            <ListHomeProducts
+            <ProductList
+              mktName={props.mktName}
+              appImagesUrl={props.appImagesUrl}
+              page={"home"}
               attribute="son_featured"
               category="Recomendados"
             />
