@@ -25,7 +25,7 @@ export const Texto = styled.div`
     font-size: 14px;
     font-weight: 400;
 
-    height: 48px;
+    height: 50px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;

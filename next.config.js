@@ -44,7 +44,7 @@ const nextConfig = {
         },
         filename: "static/chunks/remoteEntry.js",
         exposes: {
-          "./productList": "./components/ProductList/index.jsx",
+          "./productCard": "./components/ProductCard/index.jsx",
           "./productListApiGql": "./components/ProductListApiGql/index.jsx",
         },
 
