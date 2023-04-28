@@ -198,6 +198,7 @@ const GlobalStyles = createGlobalStyle`
     }
     a{
         color: #292929;
+        text-decoration: none;
         &:hover{
             color: #333;
             text-decoration: none;
@@ -214,6 +215,10 @@ const GlobalStyles = createGlobalStyle`
     table {
         border-collapse: collapse;
         border-spacing: 0;
+    }
+
+    .slick-slide {
+      margin: 30px 0px;
     }
 
     .cursor-pointer{

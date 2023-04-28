@@ -1,31 +1,42 @@
-import dynamic from "next/dynamic";
-import { useContext } from "react";
-import { Context } from "../Context/AuthContext";
-import { useCart } from "../Context/CartLengthContext";
-import { useLang } from "../Context/LangContext";
-import api from "../services/api";
+import algoliasearch from "algoliasearch/lite";
+import apiUnlogged from "../services/apiUnlogged";
+import HomePage from "../PagesComponents/Home/Home";
 
-const LoginMicro = dynamic(() => import("loginPage/login"), {
-  ssr: false,
-});
+const searchClient = algoliasearch(
+  process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_APP_ID,
+  process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_SEARCH_API_KEY
+);
 
-export default function Login() {
-  const { lang, generalComponentsTranslation, setLang } = useLang();
-  const { setCartLength } = useCart();
-  const { validaLogin } = useContext(Context);
+const DEFAULT_PROPS = {
+  searchClient,
+  indexName: process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_SEARCH,
+};
 
-  const mktName = process.env.NEXT_PUBLIC_REACT_APP_NAME;
+export default function Home(props) {
   return (
     <>
-      <LoginMicro
-        mktName={mktName}
-        api={api}
-        validaLogin={validaLogin}
-        generalComponentsTranslation={generalComponentsTranslation}
-        lang={lang}
-        setLang={setLang}
-        setCartLength={setCartLength}
-      />
+      <HomePage {...DEFAULT_PROPS} menu={props.menu} banners={props.banners} />
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const { data: response } = await apiUnlogged.get("/descendant-categories");
+  const menuFilter = response.data.filter((filtro) => filtro.name !== "Root");
+
+  let banners = false;
+
+  try {
+    const { data: response } = await apiUnlogged.get("/banners");
+    banners = response;
+  } catch (e) {
+    console.log(e);
+  }
+
+  return {
+    props: {
+      banners,
+      menu: menuFilter,
+    },
+  };
 }

@@ -329,8 +329,17 @@ const ProductCardComponent = ({ hit, slider, page, appImagesUrl }) => {
                   hit.offer.price !== 0 ? (
                     <div className="price">
                       <span className="priceBefore">
-                        {hit.offer.of_to_view === true &&
-                          `${CurrencyFormat(hit.offer.price)}`}
+                        {hit.offer.of_to_view === true && (
+                          <>
+                            <div className="value">
+                              {CurrencyFormat(hit.offer.price)}
+                            </div>
+
+                            <div className="percentage">
+                              -{hit.offer.promotional_percentage}%
+                            </div>
+                          </>
+                        )}
                       </span>
                       <div className="containerAfterPrice">
                         <span className="priceAfter">
@@ -338,11 +347,6 @@ const ProductCardComponent = ({ hit, slider, page, appImagesUrl }) => {
                             ? `${CurrencyFormat(hit.offer.promotional_price)}`
                             : `${CurrencyFormat(hit.offer.price)}`}
                         </span>
-                        {hit.offer.of_to_view && (
-                          <div className="percentage">
-                            -{hit.offer.promotional_percentage}%
-                          </div>
-                        )}
                       </div>
                     </div>
                   ) : (
@@ -361,8 +365,17 @@ const ProductCardComponent = ({ hit, slider, page, appImagesUrl }) => {
               hit.son_offers[0].price !== 0 ? (
                 <div className="price">
                   <span className="priceBefore">
-                    {hit.son_offers[0].of_to_view === true &&
-                      `${CurrencyFormat(hit.son_offers[0].price)}`}
+                    {hit.son_offers[0].of_to_view === true && (
+                      <>
+                        <div className="value">
+                          {CurrencyFormat(hit.son_offers[0].price)}
+                        </div>
+
+                        <div className="percentage">
+                          -{hit.son_offers[0].promotional_percentage}%
+                        </div>
+                      </>
+                    )}
                   </span>
                   <div className="containerAfterPrice">
                     <span className="priceAfter">
@@ -372,12 +385,6 @@ const ProductCardComponent = ({ hit, slider, page, appImagesUrl }) => {
                           )}`
                         : `${CurrencyFormat(hit.son_offers[0].price)}`}
                     </span>
-
-                    {hit.son_offers[0].of_to_view && (
-                      <div className="percentage">
-                        -{hit.son_offers[0].promotional_percentage}%
-                      </div>
-                    )}
                   </div>
                 </div>
               ) : (
