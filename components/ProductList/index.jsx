@@ -4,9 +4,15 @@ import * as S from "./styles";
 import Slider from "react-slick";
 
 import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-import ProductCardComponent from "../ProductCard";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+
+const ProductCardMicro = dynamic(
+  () => import("generalProductCards/productCard"),
+  {
+    ssr: false,
+  }
+);
 
 const Hits = ({
   mktName,
@@ -346,15 +352,11 @@ const Hits = ({
             {rest.slider === "slider" ? (
               <Slider {...settingsProducts}>
                 {hits.map((hit, index) => (
-                  <ProductCardComponent
+                  <ProductCardMicro
                     key={index}
                     hit={hit}
                     slider={rest.slider}
-                    page={
-                      history.pathname.replace("/", "") === ""
-                        ? "home"
-                        : history.pathname.replace("/", "")
-                    }
+                    page="home"
                     appImagesUrl={appImagesUrl}
                   />
                 ))}
@@ -362,15 +364,11 @@ const Hits = ({
             ) : (
               <S.ProductsContainer page={rest.page}>
                 {hits.map((hit, index) => (
-                  <ProductCardComponent
+                  <ProductCardMicro
                     key={index}
                     hit={hit}
                     slider={rest.slider}
-                    page={
-                      history.pathname.replace("/", "") === ""
-                        ? "home"
-                        : history.pathname.replace("/", "")
-                    }
+                    page="home"
                     appImagesUrl={appImagesUrl}
                   />
                 ))}

@@ -36,16 +36,18 @@ const nextConfig = {
     };
     config.plugins.push(
       new NextFederationPlugin({
-        name: "generalProductCards",
+        name: "notFoundPage",
         remotes: {
           loginPage: `loginPage@https://micro-front-login.vercel.app/_next/static/${
+            isServer ? "ssr" : "chunks"
+          }/remoteEntry.js`,
+          generalProductCards: `generalProductCards@https://micro-front-search-k5g1.vercel.app//_next/static/${
             isServer ? "ssr" : "chunks"
           }/remoteEntry.js`,
         },
         filename: "static/chunks/remoteEntry.js",
         exposes: {
-          "./productCard": "./components/ProductCard/index.jsx",
-          "./productListApiGql": "./components/ProductListApiGql/index.jsx",
+          "./404": "./PagesComponents/404/404.jsx",
         },
 
         extraOptions: {

@@ -23,7 +23,7 @@ function HomePage(props) {
   const history = useRouter();
 
   useEffect(() => {
-    const promotions = props.banners.web.map((banner, key) => ({
+    const promotions = props.banners.web?.map((banner, key) => ({
       id: banner.alt,
       name: banner.title,
       creative: banner.img,
@@ -324,8 +324,8 @@ function HomePage(props) {
         <S.BannerContainer>
           <S.SliderDesktop>
             <Slider {...settings1}>
-              {props.banners.web.length > 0 &&
-                props.banners.web.map((item, index) => (
+              {props.banners.web?.length > 0 &&
+                props.banners.web?.map((item, index) => (
                   <S.ImageBannerWeb
                     key={index}
                     onClick={() => {
@@ -357,8 +357,8 @@ function HomePage(props) {
 
           <S.SliderMobile>
             <Slider {...settings1}>
-              {props.banners.mobile.length > 0 &&
-                props.banners.mobile.map((item, index) => (
+              {props.banners.mobile?.length > 0 &&
+                props.banners.mobile?.map((item, index) => (
                   <S.ImageBannerMobile
                     alt={item.alt}
                     title={item.title}
@@ -418,6 +418,7 @@ function HomePage(props) {
             attribute="son_new"
             category="Lancamentos"
             page="home"
+            appImagesUrl={appImagesUrl}
           />
         </S.ContainerBottom>
       </InstantSearch>
@@ -462,7 +463,6 @@ function HomePage(props) {
       </S.SecondaryBanner>
 
       <S.SliderCategory>
-        {console.log(props.menu[0].image_detail)}
         <h2 className="labelShowCase">Categorias</h2>
         <Slider {...settings}>
           {props?.menu?.map((attr) => (
@@ -547,6 +547,7 @@ function HomePage(props) {
             attribute="son_featured"
             category="Recomendados"
             page="home"
+            appImagesUrl={appImagesUrl}
           />
         </S.ContainerBottom>
       </InstantSearch>
